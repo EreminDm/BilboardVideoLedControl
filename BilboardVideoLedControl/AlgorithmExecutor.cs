@@ -11,7 +11,11 @@ namespace BilboardVideoLedControl
         public void executeAlgorihtms(CheckAlgorithm[] algo)
         {
             foreach(CheckAlgorithm alg in algo){
-                alg.execute();
+                if (alg.execute())
+                {
+                    String json = alg.getResult();
+
+                }
             }
         }
     }

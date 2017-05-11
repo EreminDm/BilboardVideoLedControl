@@ -64,20 +64,34 @@ namespace BilboardVideoLedControl
     class SenderCheck : CheckAlgorithm
     {
         private LedControl control;
+        private String result;
+
+        private String buildJsonResult(int id,bool outSignal,bool signal)
+        {
+
+            return "{\"senderId\":\""+id.ToString()+"\",\"outSignal\":\""+outSignal.ToString()+"\",\"inSignal\":\""+signal.ToString()+"\"";
+        }
+
+
         public bool execute()
         {
-            Boolean result = false;
+            Boolean res = false;
             int senders = (int)control.getSenders();
             for(int step=0; step < senders; step++)
             {
-                NativeMethods.GetSenderId((byte)step);
+                int id = NativeMethods.GetSenderId((byte)step);
+                if (true)
+                {
+                    result = buildJsonResult(id,false,true);
+                    res = true;
+                }
             }
-            throw new NotImplementedException();
+            return res;
         }
 
         public string getResult()
         {
-            throw new NotImplementedException();
+            return result;
         }
 
         public void setLedControl(LedControl control)
