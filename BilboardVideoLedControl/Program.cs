@@ -8,7 +8,8 @@ namespace BilboardVideoLedControl
 {
     class LedControl
     {
-        public void InitLedman(string[] args)
+        // Init ledman
+        public static void Main(string[] args)
         {
             /*
             ** Sender initialization
@@ -84,7 +85,7 @@ namespace BilboardVideoLedControl
             for(int step=0; step < senders; step++)
             {
                 int id = NativeMethods.GetSenderId((byte)step);
-                bool inputSignail = NativeMethods.GetSenderDviInput((byte)step, out ushort rHorResolution, out ushort rVerResolution); // What is are resolutions?
+                bool inputSignail = NativeMethods.IsSenderDviInputOk((byte)step); // What is are resolutions?
                 if (true)
                 {
                     result = buildJsonResult(id, false, inputSignail);
